@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: order
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/order
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+  virtual-host: /
+  listener:
+    simple:
+      default-requeue-rejected: false
+      concurrency: 15
+      max-concurrency: 30
+
+logging:
+  level:
+    org.flywaydb: DEBUG
